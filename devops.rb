@@ -3,25 +3,32 @@ require 'redis'
 require 'json'
 require 'csv'
 
+set :bind, '0.0.0.0'
+set :public_folder, File.dirname(__FILE__) + './public/'
+
 redis = Redis.new
 
 get '/' do
-  'Deploy Time Series API'
+  send_file 'public/index.html'
+end
+
+get '/style.css' do
+  send_file 'public/style.css'
 end
 
 post '/api/v1' do
-  payload = JSON.parse(request.body.read)
-  payload["date"] = Time.now 
-  redis.incr(payload.to_json)
+  begin
+    payload = JSON.parse(request.body.read)
+    payload["date"] = Time.now
+    redis.incr(payload.to_json)
+    status 201
+  rescue
+    cache_control :public, :max_age => 30
+    status 501
+  end
 end
 
-get '/api/v1/list' do
+get '/api/v1/' do
   content_type :json
-  JSON.pretty_generate(redis.keys('*'))
-end
-
-get '/api/v1/download' do
-  content_type 'application/csv'
-  attachment "download.csv"
-  JSON.pretty_generate(redis.keys('*'))
+  JSON.pretty_generate(redis.keys('*')).delete!('\\')
 end
