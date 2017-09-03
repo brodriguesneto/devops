@@ -16,7 +16,7 @@ get '/style.css' do
   send_file 'public/style.css'
 end
 
-post '/api/v1' do
+post '/api/v1/' do
   begin
     payload = JSON.parse(request.body.read)
     payload["date"] = Time.now
