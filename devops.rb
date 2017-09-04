@@ -1,12 +1,12 @@
 require 'sinatra'
 require 'redis'
 require 'json'
-require 'csv'
 
 set :bind, '0.0.0.0'
 set :public_folder, File.dirname(__FILE__) + './public/'
 
 redis = Redis.new
+
 
 get '/' do
   send_file 'public/index.html'
