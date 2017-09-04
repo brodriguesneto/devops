@@ -1,0 +1,62 @@
+{
+	"variables": [],
+	"info": {
+		"name": "DevOps",
+		"_postman_id": "c3ef1d20-8678-6d61-d146-1f7b83ea6627",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /",
+			"request": {
+				"url": "http://localhost:4567/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/v1/ - status 201",
+			"request": {
+				"url": "http://localhost:4567/api/v1/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"component\": \"postman\",\n\t\"version\": \"v0.1.2\",\n\t\"author\": \"Boaventura Rodrigues Neto\",\n\t\"status\": \"Success\"\n}"
+				},
+				"description": "DevOps"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/v1/ - status 501",
+			"request": {
+				"url": "http://localhost:4567/api/v1/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "TESTE"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
