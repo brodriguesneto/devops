@@ -103,6 +103,8 @@ minikube service devops
 
 ### Testando
 
+Mesmo o último comando abrindo com sucesso a homepage a aplicação vai levar de 1 a 2min para estar online.
+
 Exponha a porta 4567 via localhost:
 
 ```sh
@@ -137,6 +139,7 @@ http://localhost:8001/ui
 ### Roadmap
 
 #### [] Implementar export no formato CSV
+#### [] Deixar a aplicação mais resiliente com validação dos campos do payload etc.
 #### [] Alterar a solução de persistência para um banco mais apropriado para time series como o InfluxDB.
 #### [] Adicionar autorização e autenticação na aplicação e no banco de dados.
 #### [] Implementar visualização em time series com a solução Cronograf.
