@@ -110,7 +110,7 @@ DEVOPS_POD=$(kubectl get pod -l run=devops -o jsonpath='{.items[0].metadata.name
 kubectl port-forward $DEVOPS_POD 4567:4567
 ```
 Abra o Postman, importe a coleção DevOps.postman_collection.json.
-Utilize a funcionalidade Runs e execute "Run DevOps" algumas vezes.
+Utilize a funcionalidade Run e execute "Run DevOps" algumas vezes.
 
 Vá até o navegador de Internet com a homepage da aplicação e adicione o caminho /api/v1/, exemplo:
 
