@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: null
+  generation: 1
+  labels:
+    run: devops
+  name: devops
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/devops
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: devops
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: devops
+    spec:
+      containers:
+      - image: brodriguesneto/devops:latest
+        imagePullPolicy: Always
+        name: devops
+        env:
+        - name: REDIS_URL
+          value: "redis://redis:6379"
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30

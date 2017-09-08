@@ -7,7 +7,6 @@ set :public_folder, File.dirname(__FILE__) + './public/'
 
 redis = Redis.new
 
-
 get '/' do
   send_file 'public/index.html'
 end

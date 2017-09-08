@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "128Mi"
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+          - name: redis
+            mountPath: "/data"
+      volumes:
+      - name: redis
+        persistentVolumeClaim:
+          claimName: redis
