@@ -138,12 +138,13 @@ http://localhost:8001/ui
 
 #### [] Implementar export no formato CSV
 #### [] Alterar a solução de persistência para um banco mais apropriado para time series como o InfluxDB.
-#### [] Adicionar atorização e autenticação na aplicação e no banco de dados.
-#### [] Implementar visualização em time series como a solução Cronograf.
+#### [] Adicionar autorização e autenticação na aplicação e no banco de dados.
+#### [] Implementar visualização em time series com a solução Cronograf.
 #### [] Implementar CI/CD para o build da imagem do Docker com Jenkins.
 #### [] Implementar teste automatizado com RSpec.
 #### [] Criar namespaces no Kubernetes para os ambientes dev, staging e prod, para o Continuous Deployment.
 #### [] Implementar solução de log aggregator como Graylog ou Fluentd.
+#### [] Fazer deploy da solução em um provedor de computação em nuvem (pública).
 
 [__VirtualBox__]: https://www.virtualbox.org/
 [__Homebrew__]: https://brew.sh/
