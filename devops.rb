@@ -3,7 +3,6 @@ require 'redis'
 require 'json'
 
 set :bind, '0.0.0.0'
-set :public_folder, File.dirname(__FILE__) + './public/'
 
 redis = Redis.new
 
@@ -18,11 +17,11 @@ end
 post '/api/v1/' do
   begin
     payload = JSON.parse(request.body.read)
-    payload["date"] = Time.now
+    payload['date'] = Time.now
     redis.incr(payload.to_json)
     status 201
   rescue
-    cache_control :public, :max_age => 30
+    cache_control :public, max_age: 30
     status 501
   end
 end
