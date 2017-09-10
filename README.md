@@ -28,9 +28,9 @@ Este projeto foi desenvolvido localmente em um sistema macOS 10.12 tendo como re
 
 ### Sobre o container Docker
 
-A criação do container foi feita utilizando a recomendação de seguir a order dos comandos visando colocar o conteúdo mais provável de alteração para o fim e juntando os comandos que alteram o conteúdo de maneira acentuada, de forma a minimizar o crescimento desnecessário da imagem.
-O build da imagem está sendo feito automaticamente com a integração entre o Github e o Docker Hub, fazendo proveito deste facilidador para ter algo de [__CI__] desde já.
-A aplicação está também passando por um processo de [__lint__] fazendo uso da ferramente [__Rubocop__] com um hook no pre-commit do git. Caso queira fazer um fork deste projeto e não utilizar o Rubocop, você deve fazer o commit sem verificação: ```git commit --no-verify``` . 
+A criação do container é feita utilizando a recomendação de seguir a order dos comandos visando colocar o conteúdo mais provável de alteração para o fim e juntando os comandos que alteram o conteúdo de maneira acentuada, de forma a minimizar o crescimento desnecessário da imagem.
+O build da imagem está sendo feito automaticamente com a integração entre o __Github__ e o [__Docker Hub__], fazendo proveito deste facilidador para ter algo de [__CI__] desde já.
+A aplicação está também passando por um processo de [__lint__] fazendo uso da ferramenta [__Rubocop__] com um hook no pre-commit do git. Caso queira fazer um fork deste projeto e não utilizar o Rubocop, você deve fazer o commit sem verificação: ```git commit --no-verify``` . 
 
 ### Preparando o ambiente
 
@@ -165,3 +165,4 @@ http://localhost:8001/ui
 [__CI__]: https://en.wikipedia.org/wiki/Continuous_integration
 [__API REST__]: https://en.wikipedia.org/wiki/Representational_state_transfer
 [__JSON__]: http://www.json.org/
+[__Docker Hub__]: https://hub.docker.com/r/brodriguesneto/devops/builds/
