@@ -1,7 +1,7 @@
 # DevOps Deploy Time Series API
 
 Este projeto tem como objetivo o estudo de caso de um sistema distribuído utilizando o Kubernetes como plataforma.
-Esta aplicação expõe uma API REST e recebe um JSON como payload, por exemplo:
+Esta aplicação expõe uma [__API REST__] e recebe um [__JSON__] como payload, por exemplo:
 
 ```json
 {
@@ -12,7 +12,7 @@ Esta aplicação expõe uma API REST e recebe um JSON como payload, por exemplo:
 }
 ``` 
 
-Alimentando uma base de dados Redis para acompanhamento do intervalo de tempo entre deploys e seus status.
+Alimentando uma base de dados [__Redis__] para acompanhamento do intervalo de tempo entre deploys e seus status.
 
 ### Requisitos
 
@@ -25,6 +25,12 @@ Este projeto foi desenvolvido localmente em um sistema macOS 10.12 tendo como re
 [__Docker for Mac__]
 
 [__Postman__]
+
+### Sobre o container Docker
+
+A criação do container foi feita utilizando a recomendação de seguir a order dos comandos visando colocar o conteúdo mais provável de alteração para o fim e juntando os comandos que alteram o conteúdo de maneira acentuada, de forma a minimizar o crescimento desnecessário da imagem.
+O build da imagem está sendo feito automaticamente com a integração entre o Github e o Docker Hub, fazendo proveito deste facilidador para ter algo de [__CI__] desde já.
+A aplicação está também passando por um processo de [__lint__] fazendo uso da ferramente [__Rubocop__] com um hook no pre-commit do git. Caso queira fazer um fork deste projeto e não utilizar o Rubocop, você deve fazer o commit sem verificação: ```git commit --no-verify``` . 
 
 ### Preparando o ambiente
 
@@ -154,3 +160,8 @@ http://localhost:8001/ui
 [__Docker for Mac__]: https://docs.docker.com/docker-for-mac/install/
 [__Redis__]: https://redis.io/
 [__Postman__]: https://www.getpostman.com/
+[__lint__]: https://en.wikipedia.org/wiki/Lint_(software)
+[__Rubocop__]: http://batsov.com/rubocop/
+[__CI__]: https://en.wikipedia.org/wiki/Continuous_integration
+[__API REST__]: https://en.wikipedia.org/wiki/Representational_state_transfer
+[__JSON__]: http://www.json.org/
