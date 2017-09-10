@@ -34,24 +34,26 @@ A aplicação está também passando por um processo de [__lint__] fazendo uso d
 
 ### Preparando o ambiente
 
-Instale o kubectl:
+Primeiramente para interagir com o Kubernetes precisamos do kubectl, vamos instalá-lo:
 
 ```sh
 brew install kubectl
 ```
 
-Instale o minikube:
+O Kubernetes é implementado pelos mesmos princípios que habilitam o Google a executar bilhões de containers por semana, mas também é fantástico como ele poder fazer o ___scale down___ e ser executado em nossa estação de trabalho, através do [__Minikube__].
+
+Instalando o minikube:
 
 ```sh
 brew cask install minikube
 ```
 
-Inicie o minikube:
+Iniciando o minikube:
 
 ```sh
 minikube start
 ```
-Habilite o Heapster no minikube:
+O Minikube permite habilitar addons no cluster Kubernetes. O [__Heapster__] é um exemplo disso, vamos habilitá-lo para termos monitoria de performance do cluster:
 
 ```sh
 minikube addons enable heapster
@@ -166,3 +168,5 @@ http://localhost:8001/ui
 [__API REST__]: https://en.wikipedia.org/wiki/Representational_state_transfer
 [__JSON__]: http://www.json.org/
 [__Docker Hub__]: https://hub.docker.com/r/brodriguesneto/devops/builds/
+[__Minikube__]: https://kubernetes.io/docs/getting-started-guides/minikube/
+[__Heapster__]: https://github.com/kubernetes/heapster
