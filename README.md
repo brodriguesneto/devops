@@ -122,7 +122,7 @@ kubectl port-forward $DEVOPS_POD 4567:4567
 Abra o Postman, importe a coleção DevOps.postman_collection.json.
 Utilize a funcionalidade Run e execute "Run DevOps" algumas vezes.
 
-Vá até o navegador de Internet com a homepage da aplicação e adicione o caminho /api/v1/, exemplo:
+Vá até o navegador de Internet com a homepage da aplicação e adicione o caminho /api/v1/ (devemos nos atentar ao ```/``` no fim do caminho), exemplo:
 
 ```javascript
 http://{{ip}}:{{port}}/api/v1/
