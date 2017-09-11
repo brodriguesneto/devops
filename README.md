@@ -34,6 +34,8 @@ A aplicação está também passando por um processo de [__lint__] fazendo uso d
 
 ### Preparando o ambiente
 
+Estamos utilizando o Kubernetes como plataforma para demonstrar o estado da arte em automação de infraestrutura. O Kubernetes é uma ferramente que representa o que há de melhor em operação de TI. Aqui podemos unificar todo nosso conhecimento de automação, gerenciamento de configuração, provisionamento e orquestração de containers em um só lugar. Ele utiliza uma linguagem [__declarativa__] no formato [__YAML__], e também pode ser utilizado de maneira [__imperativa__] com a CLI kubectl. No meu ponto de vista isso significa que ele unifica alguns dos melhores aspectos de duas das melhores ferramentas de administração de sistemas do mundo: [__Terraform__] e [__Ansible__].
+
 Primeiramente para interagir com o Kubernetes precisamos do kubectl, vamos instalá-lo:
 
 ```sh
@@ -53,6 +55,15 @@ Iniciando o minikube:
 ```sh
 minikube start
 ```
+
+Todos os testes foram feitos utilizando o kubectl 1.7.5 e o minikube 1.7.5, isso pode ser verificado com o comando:
+
+```sh
+kubectl version
+```
+
+Atente-se para o campo ```GitVersion```.
+
 O Minikube permite habilitar addons no cluster Kubernetes. O [__Heapster__] é um exemplo disso, vamos habilitá-lo para termos monitoria de performance do cluster:
 
 ```sh
@@ -61,7 +72,7 @@ minikube addons enable heapster
 
 ### Fazendo o deploy no Kubernetes
 
-Vamos subir o Redis como "reliable singleton", subir a aplicação devops em um deploy com 3 réplicas e testar o seu funcionamento.
+Vamos subir o Redis como "reliable singleton", que mesmo tendo um só Pod (Pod é a menor unidade de deploy no Kubernetes, podendo ter um ou mais containers que possam fazer sentido seu deploy unificado), ele será muito confiável por se tratar de um replicaSet (mantendo o estado desejado da infraestrutura) e ter persistência em disco. Subir a aplicação devops em um deployment com 3 replicaSets, mantento alta disponibilidade, já dando-nos base para fazer nosso rollout [__Blue/Green__] com downtime zero (tudo isso somente utilizando os recursos nativos do Kunernetes). Finalmente vamos testar o seu funcionamento.
 
 ### Redis
 
@@ -143,18 +154,26 @@ Acesse:
 ```javascript
 http://localhost:8001/ui
 ```
+### Finalizando o ambiente.
+
+Depois de testar podemos destruir nosso ambiente:
+
+```sh
+minikube stop
+minikube delete
+```
 
 ### Roadmap
 
 #### [] Implementar export no formato CSV
-#### [] Deixar a aplicação mais resiliente com validação dos campos do payload etc.
-#### [] Alterar a solução de persistência para um banco mais apropriado para time series como o InfluxDB.
+#### [] Deixar a aplicação mais resiliente com validação dos campos do payload, health checks etc.
+#### [] Alterar a solução de persistência para um banco mais apropriado para time series com InfluxDB.
 #### [] Adicionar autorização e autenticação na aplicação e no banco de dados.
 #### [] Implementar visualização em time series com a solução Cronograf.
 #### [] Implementar CI/CD para o build da imagem do Docker com Jenkins.
 #### [] Implementar teste automatizado com RSpec.
-#### [] Criar namespaces no Kubernetes para os ambientes dev, staging e prod, para o Continuous Deployment.
 #### [] Implementar solução de log aggregator como Graylog ou Fluentd.
+#### [] Criar namespaces no Kubernetes para os ambientes dev, staging e prod, para o Continuous Deployment.
 #### [] Fazer deploy da solução em um provedor de computação em nuvem (pública).
 
 [__VirtualBox__]: https://www.virtualbox.org/
@@ -170,3 +189,9 @@ http://localhost:8001/ui
 [__Docker Hub__]: https://hub.docker.com/r/brodriguesneto/devops/builds/
 [__Minikube__]: https://kubernetes.io/docs/getting-started-guides/minikube/
 [__Heapster__]: https://github.com/kubernetes/heapster
+[__Terraform__]: https://www.terraform.io/
+[__Ansible__]: https://www.ansible.com/
+[__Blue/Green__]: https://martinfowler.com/bliki/BlueGreenDeployment.html
+[__YAML__]: https://en.wikipedia.org/wiki/YAML
+[__declarativa__]: https://en.wikipedia.org/wiki/Infrastructure_as_Code
+[__imperativa__]: https://en.wikipedia.org/wiki/Infrastructure_as_Code
